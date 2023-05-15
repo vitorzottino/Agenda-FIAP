@@ -2,6 +2,8 @@ package model;
 
 import java.sql.Date;
 
+import br.com.fiap.util.CriptoUtil;
+
 //javabeans
 public class User {
 
@@ -15,14 +17,13 @@ public class User {
 
 	}
 
-	public User(int id, String name, String email, String password) {
+	public User(String name, String email, String password) {
 
-		this.id = id;
 		this.name = name;
 		this.email = email;
-		this.password = password;
+		setPassword(password);
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -60,14 +61,16 @@ public class User {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		try {
+			this.password = CriptoUtil.criptografar(password);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", date=" + date + ", password=" + password
-				+ "]";
+		return "User= " + id + " \nNome= " + name + " \nEmail= " + email + " \nDate= " + date + " \nPassword= "
+				+ password;
 	}
-	
-	
 
 }

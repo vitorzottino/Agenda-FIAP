@@ -14,18 +14,17 @@ public class UserDAO {
 
 	private Connection conexao;
 
-	public UserDAO() {
-		this.conexao = new ConnectionFactory().conectar();
+	public UserDAO() throws SQLException{
+		this.conexao = ConnectionFactory.conectar();
 	}
 
 	public void insert(User user) throws SQLException {
-		String sql = "insert into REGISTROS(ID, NOME, EMAIL, SENHA, DATA_REGISTRO) values (?, ?, ?, ?, ?)";
+		String sql = "insert into REGISTROS(NOME, EMAIL, SENHA, DATA_REGISTRO) values (?, ?, ?, ?)";
 		PreparedStatement stmt = conexao.prepareStatement(sql);
-		stmt.setInt(1, user.getId());
-		stmt.setString(2, user.getName());
-		stmt.setString(3, user.getEmail());
-		stmt.setString(4, user.getPassword());
-		stmt.setDate(5, user.getDate());
+		stmt.setString(1, user.getName());
+		stmt.setString(2, user.getEmail());
+		stmt.setString(3, user.getPassword());
+		stmt.setDate(4, user.getDate());
 
 		stmt.execute();
 		stmt.close();
