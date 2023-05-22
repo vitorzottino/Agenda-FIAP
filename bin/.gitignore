@@ -1,5 +1,6 @@
-/resources/
 /Teste/
+/br/
 /model/
 /repository/
-/br/
+/jdbc/
+/view/

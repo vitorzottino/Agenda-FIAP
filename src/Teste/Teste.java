@@ -2,8 +2,8 @@ package Teste;
 import java.sql.SQLException;
 import java.util.List;
 
-import model.User;
-import repository.UserDAO;
+import br.com.fiap.model.User;
+import br.com.fiap.repository.UserDAO;
 
 public class Teste {
 	
@@ -12,11 +12,11 @@ public class Teste {
 	public static void main(String[] args) throws SQLException{
 		
 		
-		User vitor = new User("Vitor", "vitor@fiap.com", "admin");
+		User vitor = new User("Vitor Zottino", "vitor@fiap.com", "admin");
 		UserDAO dao = new UserDAO();
 		List<User> userList = dao.selectAll();
 		
-		dao.insert(vitor);
+		//dao.insert(vitor);
 		
 		for(User user : userList) {
 			System.out.println("ID: " + user.getId());
